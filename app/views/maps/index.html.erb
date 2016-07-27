@@ -1,1 +1,22 @@
 <h3>List of Pokemons</h3>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Expired In</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Link To Pokevision</th>
+  </tr>
+  <% @pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= pokemon.id %></td>
+      <td><%= image_tag pokemon.image %></td>
+      <td><%= pokemon.expiration_time %></td>
+      <td><%= pokemon.latitude.round(MapsHelper::GEO_DIGIT) %></td>
+      <td><%= pokemon.longitude.round(MapsHelper::GEO_DIGIT) %></td>
+      <td><%= link_to "PokeVision", pokemon.link %></td>
+    </tr>
+  <% end %>
+</table>
