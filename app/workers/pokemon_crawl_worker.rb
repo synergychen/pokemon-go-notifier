@@ -6,9 +6,10 @@ class PokemonCrawlWorker
     crawler = PokemonCrawler.new(latitude, longitude)
     pokemons = crawler.parse
 
-    pokemons.each do |pokemon|
-      pm = Pokemon.find_or_create_by(pokevision_uri: pokemon.pokevision_uri)
-      pm.update(obj_to_hash(pokemon).merge(area: area))
+    pokemons.each do |pm|
+      next unless Pokemon.wanted(pm.pokemon_id)
+      pokemon = Pokemon.find_or_create_by(pokevision_uri: pm.pokevision_uri)
+      pokemon.update(obj_to_hash(pm).merge(area: area))
     end
   end
 
