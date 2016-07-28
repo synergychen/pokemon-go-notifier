@@ -4,7 +4,8 @@ class MapsController < ApplicationController
   end
 
   def refresh
-    Pokemon.destroy_all
+    # Pokemon.destroy_all
+    ExpiredCleanWorker.perform_async
 
     geos = [
       [40.70699430376331,-74.01042938232422],
