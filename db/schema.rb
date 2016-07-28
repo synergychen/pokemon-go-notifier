@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725031951) do
+ActiveRecord::Schema.define(version: 20160728015712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pokemons", force: :cascade do |t|
+    t.integer  "pokemon_id"
+    t.string   "uid"
+    t.string   "image_uri"
+    t.datetime "expire_at"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.boolean  "is_alive"
+    t.string   "pokevision_uri"
+    t.string   "area"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
