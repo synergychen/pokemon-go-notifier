@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :maps
 
+  get "refresh", to: "maps#refresh"
+
   mount Sidekiq::Web, at: '/sidekiq'
 end

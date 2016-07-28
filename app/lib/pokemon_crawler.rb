@@ -48,9 +48,9 @@ class PokemonCrawler
 
   def pre_process(pokemons)
     pokemon_objs = pokemons.map do |pokemon_json|
-      Pokemon.new(pokemon_json)
+      PokemonObject.new(pokemon_json)
     end
 
-    pokemon_objs.uniq { |e| [e.latitude, e.longitude] }.sort_by(&:id)
+    pokemon_objs.uniq { |e| [e.latitude, e.longitude] }.sort_by(&:pokemon_id)
   end
 end

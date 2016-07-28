@@ -11,12 +11,12 @@
   </tr>
   <% @pokemons.each do |pokemon| %>
     <tr>
-      <td><%= pokemon.id %></td>
-      <td><%= image_tag pokemon.image %></td>
-      <td><%= pokemon.expiration_time %></td>
-      <td><%= pokemon.latitude.round(MapsHelper::GEO_DIGIT) %></td>
-      <td><%= pokemon.longitude.round(MapsHelper::GEO_DIGIT) %></td>
-      <td><%= link_to "PokeVision", pokemon.link %></td>
+      <td><%= pokemon.pokemon_id %></td>
+      <td><%= image_tag pokemon.image_uri %></td>
+      <td><%= pokemon.remaining_time %></td>
+      <td><%= pokemon.latitude %></td>
+      <td><%= pokemon.longitude %></td>
+      <td><%= link_to "PokeVision", pokemon.pokevision_uri %></td>
     </tr>
   <% end %>
 </table>
