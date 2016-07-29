@@ -1,12 +1,9 @@
 class MapsController < ApplicationController
   def index
-    @pokemons = Pokemon.all.sort_by(&:pokemon_id)
+    @pokemons = Pokemon.active.sort_by(&:pokemon_id)
   end
 
   def refresh
-    # Pokemon.destroy_all
-    ExpiredCleanWorker.perform_async
-
     geos = [
       [40.70699430376331,-74.01042938232422],
       [40.720136007355364,-74.00588035583496],
@@ -37,12 +34,13 @@ class MapsController < ApplicationController
       [40.87004064134163,-73.92030715942383]
     ]
 
-
     geos.each do |geo|
-      sleep 7
+      sleep 10
       PokemonCrawlWorker.perform_async(geo[0], geo[1], "new york")
     end
 
-    render json: {status: "refreshed pokemons"}
+    ExpiredCleanWorker.perform_async
+
+    redirect_to maps_path
   end
 end

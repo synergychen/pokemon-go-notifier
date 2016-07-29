@@ -4,7 +4,7 @@ class PokemonCrawler
   attr_reader :latitude, :longitude
 
   URI_PREFIX = "https://pokevision.com/map/"
-  WAIT_RESPONSE_TIME = 7
+  WAIT_RESPONSE_TIME = 10
 
   def initialize(latitude, longitude)
     @latitude = latitude.to_s

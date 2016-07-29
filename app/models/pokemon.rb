@@ -1,4 +1,5 @@
 class Pokemon < ActiveRecord::Base
+  scope :active, -> { where("expire_at >= ?", Time.now) }
   scope :expired, -> { where("expire_at < ?", Time.now) }
 
   WISH_LIST = [
