@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+gem 'whenever', :require => false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
