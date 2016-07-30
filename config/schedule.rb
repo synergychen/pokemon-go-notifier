@@ -5,4 +5,5 @@ end
 
 every 1.minute do
   runner "Manager.update"
+  runner "NotifyWorker.perform_async"
 end

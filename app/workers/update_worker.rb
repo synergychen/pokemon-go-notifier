@@ -7,7 +7,7 @@ class UpdateWorker
     pokemons = crawler.perform
 
     pokemons.each do |pm|
-      next unless Pokemon.wanted(pm.pokemon_id)
+      next unless Pokemon.is_wanted(pm.pokemon_id)
       pokemon = Pokemon.find_or_create_by(pokevision_uri: pm.pokevision_uri)
       pokemon.update(obj_to_hash(pm).merge(area: area))
     end
