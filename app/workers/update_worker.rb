@@ -1,10 +1,10 @@
-class PokemonCrawlWorker
+class UpdateWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
 
   def perform(latitude, longitude, area = "")
-    crawler = PokemonCrawler.new(latitude, longitude)
-    pokemons = crawler.parse
+    crawler = Crawler.new(latitude, longitude)
+    pokemons = crawler.perform
 
     pokemons.each do |pm|
       next unless Pokemon.wanted(pm.pokemon_id)
