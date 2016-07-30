@@ -30,7 +30,7 @@ class Manager
   ]
 
   def self.update
-    geos.each do |geo|
+    NEW_YROK_GEOS.each do |geo|
       UpdateWorker.perform_async(geo[0], geo[1], "new york")
     end
   end
