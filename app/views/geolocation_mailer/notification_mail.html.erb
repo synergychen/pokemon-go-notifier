@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><strong>ID</strong></td>
+        <td><%= @pokemon.pokemon_id %></td>
+      </tr>
+      <tr>
+        <td><strong>Image</strong></td>
+        <td><%= image_tag @pokemon.image_uri %></td>
+      </tr>
+      <tr>
+        <td><strong>Coordinate</strong></td>
+        <td><%= @pokemon.coordinate %></td>
+      </tr>
+      <tr>
+        <td><strong>PokeVision</strong></td>
+        <td><%= link_to "Link", @pokemon.pokevision_uri %></td>
+      </tr>
+      <tr>
+        <td><strong>Remaining Time</strong></td>
+        <td><%= @pokemon.remaining_time %></td>
+      </tr>
+    </table>
+  </body>
+</html>
