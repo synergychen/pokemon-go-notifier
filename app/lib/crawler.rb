@@ -16,7 +16,7 @@ class Crawler
     uri = parsing_uri
     data = parse_json(uri)
 
-    return {status: "fail"} unless data["status"] == "success"
+    raise Exceptions::CrawlError if invalid(data)
 
     pokemon_objs = data["pokemon"].map do |pokemon_json|
       PokemonObject.new(pokemon_json)
@@ -25,6 +25,7 @@ class Crawler
     pokemon_objs.uniq { |e| [e.latitude, e.longitude] }.sort_by(&:pokemon_id)
   rescue => e
     p e.message
+    []
   end
 
   private
@@ -43,5 +44,11 @@ class Crawler
     JSON.parse(response)
   rescue => e
     p e.message
+  end
+
+  def invalid(data)
+    data["status"] != "success" ||
+      data["jobStatus"] == "failure" ||
+      !data["pokemon"].is_a?(Array)
   end
 end
